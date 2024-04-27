@@ -10,4 +10,4 @@ RUN apt-get update && \
     pip install -r requirements.txt
 
 ENTRYPOINT ["python3"]
-CMD ["manage.py","runserver","0.0.0.0:8000"]
+CMD ["manage.py", "runserver", "0.0.0.0:8000"]
