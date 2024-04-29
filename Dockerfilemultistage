@@ -1,0 +1,22 @@
+FROM ubuntu as u
+
+WORKDIR /app
+
+COPY requirements.txt/app
+
+RUN apt-get update && \ 
+    apt-get install -y python3 python3-pip && \
+    apt-get install -y $(cat requirements.txt)
+
+COPY . .
+
+FROM python3.9-slim
+
+WORKDIR /app
+
+COPY --from = u /user/local /user/local
+COPY --from = u /app .
+
+ENTRYPOINT ["python3"]
+
+CMD ["manage.py", "runserver", "0.0.0.0:8000"]
