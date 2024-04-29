@@ -1,2 +1,2 @@
-Django
+python3-django
 tzdata
